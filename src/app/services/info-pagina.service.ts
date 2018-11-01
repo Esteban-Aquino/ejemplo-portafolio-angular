@@ -9,7 +9,7 @@ import { Equipo } from '../interfaces/equipo.ingerface';
 export class InfoPaginaService {
   info: InfoPagina = {};
   equipo: Equipo[] = [{}];
-  cargada = false;
+  cargado = false;
   constructor(private http: HttpClient) {
     this.cargarInfo ();
     this.cargarEquipo ();
@@ -19,7 +19,8 @@ export class InfoPaginaService {
     // Leer archivo Json
     this.http.get('assets/data/data-pagina.json')
              .subscribe((resp: InfoPagina) => {
-               this.cargada = true;
+               this.cargado = true;
+               // setTimeout(() => {this.cargado = true; }, 2000);
                this.info = resp;
                 // console.log(resp);
              });
@@ -28,7 +29,8 @@ export class InfoPaginaService {
     // Leer archivo Json
     this.http.get('https://ejemplo-angular-hmtl.firebaseio.com/eaquino.json')
              .subscribe((resp: Equipo[]) => {
-               this.cargada = true;
+               // this.cargado = true;
+               setTimeout(() => {this.cargado = true; }, 2000);
                this.equipo = resp;
                 // console.log(resp);
              });
